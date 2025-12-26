@@ -121,7 +121,7 @@ function Navbar() {
             <NavigationMenuItem>
               <NavigationMenuTrigger>Tours</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <div className="grid w-[400px] gap-3 p-4">
+                <div className="grid `w-100` gap-3 p-4">
                   <NavLinkWrapper href="/">Wildlife</NavLinkWrapper>
                   <NavLinkWrapper href="/">Cruise Tour</NavLinkWrapper>
                   <NavLinkWrapper href="/">Tour & Cruise</NavLinkWrapper>
@@ -132,7 +132,7 @@ function Navbar() {
             <NavigationMenuItem>
               <NavigationMenuTrigger>Destination</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <div className="grid w-[400px] gap-3 p-4">
+                <div className="grid `w-100` gap-3 p-4">
                   <NavLinkWrapper href="/">Dubai City</NavLinkWrapper>
                   <NavLinkWrapper href="/">Hatta Village</NavLinkWrapper>
                   <NavLinkWrapper href="/">Ras Al Khaima City</NavLinkWrapper>
@@ -144,7 +144,7 @@ function Navbar() {
             <NavigationMenuItem>
               <NavigationMenuTrigger>Deals</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <div className="grid w-[400px] gap-3 p-4">
+                <div className="grid `w-100` gap-3 p-4">
                   <NavLinkWrapper href="/">Desert Safari Deals</NavLinkWrapper>
                   <NavLinkWrapper href="/">Group Deals</NavLinkWrapper>
                   <NavLinkWrapper href="/">Corporate Tours</NavLinkWrapper>
@@ -174,7 +174,7 @@ function Navbar() {
         {user ? (
           <div className="hidden md:flex items-center gap-2">
             <span
-              className="text-sm font-bold text-teal-600 truncate max-w-[100px]"
+              className="text-sm font-bold text-teal-600 truncate `max-w-25`"
               title={user.name}
             >
               Hi, {user.name.split(" ")[0]}
@@ -206,7 +206,7 @@ function Navbar() {
             <SheetTrigger className="flex items-center p-2">
               <Menu size={25} />
             </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] overflow-y-auto">
+            <SheetContent side="left" className="`w-75` overflow-y-auto">
               <SheetTitle className="text-lg mb-5 font-bold text-teal-600 mx-3">
                 Menu
               </SheetTitle>

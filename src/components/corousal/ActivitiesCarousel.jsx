@@ -87,7 +87,7 @@ const ActivitiesCarousel = ({ title = "Popular Activities", tours = [] }) => {
         </CarouselContent>
 
         <div className="hidden md:block">
-          <CarouselPrevious className="absolute -top-14 right-[50px] z-10 h-10 w-10 bg-white dark:bg-gray-800" />
+          <CarouselPrevious className="absolute -top-14 `right-12.5` z-10 h-10 w-10 bg-white dark:bg-gray-800" />
           <CarouselNext className="absolute -top-14 right-0 z-10 h-10 w-10 bg-white dark:bg-gray-800" />
         </div>
       </Carousel>
