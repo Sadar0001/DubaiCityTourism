@@ -34,28 +34,47 @@ const ProductPage = () => {
 
   // 1. Fetch Product Data & Similar Items
   useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to top on load
-    setLoading(true);
+    let isMounted = true; // Prevents "Can't perform state update on unmounted component"
 
-    fetch(`http://localhost:8080/api/products/${id}`)
-      .then((res) => res.json())
-      .then(async (data) => {
-        setProduct(data);
+    const loadData = async () => {
+      // 1. Reset View immediately
+      window.scrollTo(0, 0);
+      setLoading(true);
 
-        // Fetch similar items (same category or random)
-        if (data && data.categories) {
-          const allProducts = await fetchProducts();
-          const similar = allProducts
-            .filter((p) => p.id !== data.id) // Exclude current
-            .slice(0, 3); // Take 3
-          setSimilarProducts(similar);
+      try {
+        // 2. Fetch Current Product
+        const response = await fetch(
+          `https://dubaicity-backend-7.onrender.com/api/products/${id}`
+        );
+        const data = await response.json();
+
+        if (isMounted) {
+          setProduct(data);
+
+          // 3. Fetch Similar Items (Only if product loaded)
+          if (data && data.categories) {
+            const allProducts = await fetchProducts();
+            const similar = allProducts
+              .filter((p) => p.id !== data.id) // Exclude current
+              .slice(0, 3); // Take 3
+
+            if (isMounted) setSimilarProducts(similar);
+          }
+
+          setLoading(false);
         }
-        setLoading(false);
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error("Failed to load product", err);
-        setLoading(false);
-      });
+        if (isMounted) setLoading(false);
+      }
+    };
+
+    loadData();
+
+    // Cleanup function
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
 
   const handlePurchase = async () => {
